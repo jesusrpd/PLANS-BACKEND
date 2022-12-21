@@ -1,16 +1,9 @@
-const express = require('express')
-const cors = require('cors')
-const morgan = require('morgan')
-const app = express()
+const app = require('./src/app')
+const http = require('http')
 
-app.use(cors())
-app.use(express.json())
-app.use(express.urlencoded({extended: false}))
-app.use(morgan("dev"))
+const server = http.createServer(app)
+const port = 3001
 
-app.get('/', (req, res) => {
-    res.send('Hola')
+server.listen(port, ()=> {
+    console.log(`Server on port ${port}`);
 })
-
-app.listen(3001)
-console.log('Server on port 3001');
