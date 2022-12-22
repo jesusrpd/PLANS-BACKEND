@@ -1,12 +1,14 @@
 const {Schema, model} = require('mongoose')
 
 const planSchema = new Schema({
-    user_create: {
+    plan: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'Plan'
     },
-    name: {type: String},
-    data: [{type: String, default: ''}]
+    
+    description: {type: String},
+    status: {type: Boolean},
+    assiggned: {type: Schema.Types.ObjectId, ref: 'User'}
 })
 
 module.exports = model("Plan", planSchema)

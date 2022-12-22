@@ -4,6 +4,10 @@ const bcrypt = require('bcrypt')
 const userSchema = new Schema({
     username: {type: String, default: ''},
     passwordEncrypt: {type: String},
+    plans: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Plan'
+    }]
 })
 
 userSchema.methods.encryptPassword = async (password) => {
@@ -15,4 +19,4 @@ userSchema.methods.comparePassword = async function(password){
     return await bcrypt.compare(password, this.passwordEncrypt);
   }
 
-module.exports = model('user', userSchema)
+module.exports = model('User', userSchema)
