@@ -6,6 +6,7 @@ const app = express()
 const config = require('./config')
 const userRoutes = require('./routes/user.routes')
 const plansRoutes = require('./routes/plan.routes')
+const dataRoutes = require('./routes/data.routes')
 
 mongoose.connect(config.db_uri)
 
@@ -30,6 +31,6 @@ app.get('/', (req, res) => {
 
 app.use('/users', userRoutes)
 app.use('/plans', plansRoutes)
-// app.use('/data', userRoutes)
+app.use('/data', dataRoutes)
 
 module.exports = app

@@ -7,8 +7,8 @@ const planSchema = new Schema({
     },
     
     description: {type: String},
-    status: {type: Boolean},
-    assiggned: {type: Schema.Types.ObjectId, ref: 'User'}
+    status: {type: Boolean, default: false},
+    assiggned: [{type: Schema.Types.ObjectId, ref: 'User'}]
 })
 
 module.exports = model("Data", planSchema)

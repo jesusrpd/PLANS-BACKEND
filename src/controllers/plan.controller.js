@@ -9,19 +9,19 @@ module.exports = {
 }
 
 async function getAllPlans(req,res){
-    const plans = await planModel.find().populate('user_create')
+    const plans = await planModel.find().populate('user_create', {username: 1})
     res.status(200).send({success: true, data: plans});
 }
 
 async function getPlan(req,res){
     const id = req.params.id
-    const plan = await planModel.findOne({_id: id}).populate('user_create')
+    const plan = await planModel.findOne({_id: id}).populate('user_create', {username: 1})
     res.status(200).send({success: true, data: plan});
 }
 
 async function createPlan(req,res){
-    const {user_create, name, description} = req.body
-    const newPlan = new planModel({user_create, name, description})
+    const {user_create, name} = req.body
+    const newPlan = new planModel({user_create, name})
     await newPlan.save()
     res.send(newPlan)
 }

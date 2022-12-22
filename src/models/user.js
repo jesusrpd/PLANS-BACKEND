@@ -4,10 +4,6 @@ const bcrypt = require('bcrypt')
 const userSchema = new Schema({
     username: {type: String, default: ''},
     passwordEncrypt: {type: String},
-    plans: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Plan'
-    }]
 })
 
 userSchema.methods.encryptPassword = async (password) => {

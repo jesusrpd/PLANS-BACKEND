@@ -6,11 +6,6 @@ const planSchema = new Schema({
         ref: 'User'
     },
     name: {type: String},
-    description: [{
-        name: {type: String, default: ''},
-        status: {type: Boolean},
-        assiggned:{type: String}
-    }]
 })
 
 module.exports = model("Plan", planSchema)
