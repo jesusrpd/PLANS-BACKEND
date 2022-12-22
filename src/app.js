@@ -30,6 +30,6 @@ app.get('/', (req, res) => {
 
 app.use('/users', userRoutes)
 app.use('/plans', plansRoutes)
-app.use('/data', userRoutes)
+// app.use('/data', userRoutes)
 
 module.exports = app

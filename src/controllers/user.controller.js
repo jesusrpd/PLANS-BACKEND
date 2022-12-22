@@ -5,7 +5,8 @@ const jwt = require('jsonwebtoken')
 module.exports = {
     getAllUsers,
     createUser,
-    signin
+    signin,
+    getOneUser
 }
 
 async function getAllUsers(req,res){
@@ -44,4 +45,10 @@ async function signin (req,res){
   })
 
   res.status(200).send({success: true, data: {token, user}});
+}
+
+async function getOneUser(req,res){
+  const id = req.params.id
+  const user = await userModel.findOne({_id:id})
+  res.send({success: true, data: user})
 }
