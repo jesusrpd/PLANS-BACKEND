@@ -20,9 +20,9 @@ async function dataByPLan(req,res){
 
 async function createData(req, res){
     const {description, plan, status, assiggned} = req.body
-    const newData = new dataModel({description, plan, status, assiggned})
+    const newData = new dataModel({description, plan, status, assiggned: assiggned})
     await newData.save()
-    res.send({success: true, data: newData})
+    res.send({success: true, data: 'newData'})
 }
 
 async function deleteData(req,res){
