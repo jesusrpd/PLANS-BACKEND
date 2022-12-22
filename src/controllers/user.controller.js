@@ -24,13 +24,16 @@ async function createUser(req,res){
 
 async function signin (req,res){
     const {username, password} = req.body;
-
+    console.log(req.body);
   // Buscamos al usuario en la BD 
   const user = await userModel.findOne({username});
+  if(!user) return res.status(404).send({
+    error: 'Usuario no encontrado'
+  })
   const passwordIsValid = await user.comparePassword(password);
 
   if(!(user && passwordIsValid)){
-    return res.status(401).json({
+    return res.status(401).send({
       error: 'username o contraseña invalidos'
     });
   }
@@ -40,5 +43,5 @@ async function signin (req,res){
     expiresIn: 86400
   })
 
-  res.status(200).json({success: true, data: {token, user}});
+  res.status(200).send({success: true, data: {token, user}});
 }
